@@ -74,7 +74,7 @@ fn get_random_aura() -> String {
         "Kaywhite"
 
     ];
-    let random_index = rand::thread_rng().gen_range(0.aura.len());    
+    let random_index = rand::thread_rng().gen_range(0..jokes.len());    
     return aura[random_index].to_string();
 }
 

@@ -2,6 +2,11 @@
 name = "cli-rng"
 version = "0.1.0"
 edition = "2021"
+license-file = "LICENSE"
+description = "Sol's RNG but CLI!"
+repository = "https://github.com/FBDev64/cli-rng.git"
+homepage = "https://github.com/FBDev64/cli-rng"
+readme = "README.md"
 
 [dependencies]
 chrono = "0.4.38"

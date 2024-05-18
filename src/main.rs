@@ -1,7 +1,7 @@
 #[allow(unused_imports)]
 
 use rand::Rng;
-use chrono;
+use rand::distributions::WeightedIndex;
 use simple_user_input::get_input;
 
 fn main() {
@@ -20,64 +20,69 @@ fn main() {
         }
     }
 }
-// TODO : Implement a system to roll a random aura but witha certain chance percentage of aura being a certain aura.            
-fn get_random_aura() -> String {
-    let aura = vec![
-        "Common : 1 in 2",
-        "Uncommon : 1 in 4",
-        "Good : 1 in 5",
-        "Natural : 1 in 8",
-        "Rare : 1 in 16",
-        "Divinus : 1 in 32",
-        "Crystallized : 1 in 64",
-        "Rage : 1 in 128",
-        "Topaz : 1 in 150",
-        "Ruby : 1 in 350",
-        "Forbidden : 1 in 404",
-        "Emerald : 1 in 500",
-        "Gilded : 1 in 500",
-        "Ink",
-        "Jackpot",
-        "Sapphire",
-        "Aquamarine",
-        "Wind",
-        "Diaboli",
-        "Precious",
-        "Glock",
-        "Magnetic",
-        "Glacier",
-        "Siderum",
-        "Bleeding",
-        "Lunar",
-        "Solar",
-        "Starlight",
-        "Flushed",
-        "Hazard",
-        "Quartz",
-        "Undead",
-        "Corrosive",
-        "Rage : Heated",
-        "Leak",
-        "Powered",
-        "Aquatic",
-        "Flushed : Lobotomy",
-        "Hazard : Rays",
-        "Nautilus",
-        "Permafrost",
-        "Stormal",
-        "Exotic",
-        "Diaboli : Void",
-        "Undead : Devil",
-        "Comet",
-        "Jade",
-        "Bounded",
-        "Celestial",
-        "Kaywhite"
 
+fn get_random_aura() -> String {
+    let auras = vec![
+        ("Common", 2),
+        ("Uncommon", 4),
+        ("Good", 5),
+        ("Natural", 8),
+        ("Rare", 16),
+        ("Divinus", 32),
+        ("Crystallized", 64),
+        ("Rage", 128),
+        ("Topaz", 150),
+        ("Ruby", 350),
+        ("Forbidden", 404),
+        ("Emerald", 500),
+        ("Gilded", 512),
+        ("Ink", 700),
+        ("Jackpot", 777),
+        ("Sapphire", 1),
+        ("Aquamarine", 1),
+        ("Flushed : Lobotomy", 1),
+        ("Hazard : Rays", 1),
+        ("Nautilus", 1),
+        ("Permafrost", 1),
+        ("Stormal", 1),
+        ("Exotic", 99999),
+        ("Diaboli : Void", 100400),
+        ("Undead : Devil", 120000),
+        ("Comet", 120000),
+        ("Jade", 125000),
+        ("Bounded", 200000),
+        ("Celestial", 350000),
+        ("Kaywhite", 850000),
+        ("Wind", 1),
+        ("Diaboli", 1),
+        ("Precious", 1),
+        ("Glock", 1),
+        ("Magnetic", 1),
+        ("Glacier", 1),
+        ("Siderum", 1),
+        ("Bleeding", 1),
+        ("Lunar", 1),
+        ("Solar", 1),
+        ("Starlight", 1),
+        ("Flushed", 1),
+        ("Hazard", 1),
+        ("Quartz", 1),
+        ("Undead", 1),
+        ("Corrosive", 1),
+        ("Rage : Heated", 1),
+        ("Leak", 1),
+        ("Powered", 1),
+        ("Aquatic", 1),
     ];
-    let random_index = rand::thread_rng().gen_range(0..aura.len());    
-    return aura[random_index].to_string();
+
+    let weights: Vec<_> = auras.iter().map(|&(_, weight)| weight).collect();
+    let dist = WeightedIndex::new(&weights).unwrap();
+    let mut rng = rand::thread_rng();
+    let index = dist.sample(&mut rng);
+
+    auras[index].0.to_string()
 }
+
 
 mod simple_user_input {
     use std::io;

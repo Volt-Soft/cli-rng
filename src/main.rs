@@ -8,7 +8,7 @@ fn main() {
     loop {
         let input: String = get_input("Enter Command, help to display commands");
         if input == "roll" {
-            println!("{}", get_random_joke())
+            println!("{}", get_random_aura())
         } 
         
         if input == "exit" {
@@ -74,7 +74,7 @@ fn get_random_aura() -> String {
         "Kaywhite"
 
     ];
-    let random_index = rand::thread_rng().gen_range(0..jokes.len());
+    let random_index = rand::thread_rng().gen_range(0.jokes.len());    
     return aura[random_index].to_string();
 }
 

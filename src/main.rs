@@ -20,21 +20,22 @@ fn main() {
         }
     }
 }
+// TODO : Implement a system to roll a random aura but witha certain chance percentage of aura being a certain aura.            
 fn get_random_aura() -> String {
     let aura = vec![
-        "Common",
-        "Uncommon",
-        "Good",
-        "Natural",
-        "Rare",
-        "Divinus",
-        "Crystallized",
-        "Rage",
-        "Topaz",
-        "Ruby",
-        "Forbidden",
-        "Emerald",
-        "Gilded",
+        "Common : 1 in 2",
+        "Uncommon : 1 in 4",
+        "Good : 1 in 5",
+        "Natural : 1 in 8",
+        "Rare : 1 in 16",
+        "Divinus : 1 in 32",
+        "Crystallized : 1 in 64",
+        "Rage : 1 in 128",
+        "Topaz : 1 in 150",
+        "Ruby : 1 in 350",
+        "Forbidden : 1 in 404",
+        "Emerald : 1 in 500",
+        "Gilded : 1 in 500",
         "Ink",
         "Jackpot",
         "Sapphire",

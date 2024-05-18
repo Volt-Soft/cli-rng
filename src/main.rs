@@ -18,6 +18,7 @@ fn main() {
         else {
             println!("Action Invalid or unimplemented yet.");
         }
+    }
 fn get_random_aura() -> String {
     let aura = vec![
         "Common",

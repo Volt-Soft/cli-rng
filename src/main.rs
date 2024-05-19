@@ -35,22 +35,6 @@ fn main() {
     }
 }
 
-/// Generates a random aura name with its rarity.
-///
-/// This function returns a string representing a random aura name and its rarity, in the format "Aura Name (1 in Rarity)". The auras and their respective rarities are defined in a hardcoded list. The function uses a weighted random selection to choose the aura based on the provided rarity values.
-///
-/// # Returns
-/// A string representing the randomly generated aura name and its rarity.
-/// Generates a random aura name with its rarity.
-///
-/// This function returns a string representing a random aura name along with its rarity in the format "Aura Name (1 in Rarity)". The auras and their respective rarities are defined in a static vector. The function uses a weighted random distribution to select the aura based on the rarity values.
-/// Generates a random aura name and its rarity.
-///
-/// This function returns a string representing a random aura name and its rarity,
-/// which is formatted as "Aura Name (1 in Rarity)". The auras and their respective
-/// rarity weights are defined in the `auras` vector. The function uses a weighted
-/// random index to select a random aura from the vector, and then returns the
-/// corresponding aura name and rarity.
 fn get_random_aura() -> String {
     let auras = vec![
         ("Common", 100000),

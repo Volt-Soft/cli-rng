@@ -2,7 +2,9 @@
 
 use rand::Rng;
 use rand::distributions::WeightedIndex;
+use rand::distributions::Distribution;
 use simple_user_input::get_input;
+
 
 fn main() {
     loop {

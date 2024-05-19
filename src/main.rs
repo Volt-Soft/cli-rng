@@ -1,23 +1,36 @@
 #[allow(unused_imports)]
-
 use rand::Rng;
 use rand::distributions::WeightedIndex;
 use rand::distributions::Distribution;
 use simple_user_input::get_input;
-
+use std::collections::HashSet;
 
 fn main() {
-    loop {
-        let input: String = get_input("Enter Command, help to display commands");
-        if input == "roll" {
-            println!("{}", get_random_aura())
-        } 
-        
-        if input == "exit" {
-            break;
-        }
+    let mut storage: HashSet<String> = HashSet::new();
 
-        else {
+    loop {
+        let input: String = get_input(">>> Enter Action: ");
+        if input == "roll" {
+            let rolled_aura = get_random_aura();
+            println!("{}", rolled_aura);
+            storage.insert(rolled_aura);
+        } else if input == "storage" {
+            if storage.is_empty() {
+                println!("No auras rolled yet.");
+            } else {
+                println!("Rolled auras:");
+                let mut auras: Vec<String> = storage.iter().map(|s| s.to_string()).collect();
+                auras.sort();
+                println!("{}", auras.join(", "));
+            }
+        } else if input == "help" {
+            println!("Available commands:");
+            println!("roll - Roll a random aura");
+            println!("storage - Display all rolled auras");
+            println!("exit - Exit the program");
+        } else if input == "exit" {
+            break;
+        } else {
             println!("Action Invalid or unimplemented yet.");
         }
     }
@@ -25,56 +38,56 @@ fn main() {
 
 fn get_random_aura() -> String {
     let auras = vec![
-        ("Common", 2),
-        ("Uncommon", 4),
-        ("Good", 5),
-        ("Natural", 8),
-        ("Rare", 16),
-        ("Divinus", 32),
-        ("Crystallized", 64),
-        ("Rage", 128),
-        ("Topaz", 150),
-        ("Ruby", 350),
-        ("Forbidden", 404),
-        ("Emerald", 500),
-        ("Gilded", 512),
-        ("Ink", 700),
-        ("Jackpot", 777),
-        ("Sapphire", 1),
-        ("Aquamarine", 1),
-        ("Flushed : Lobotomy", 1),
-        ("Hazard : Rays", 1),
-        ("Nautilus", 1),
-        ("Permafrost", 1),
-        ("Stormal", 1),
-        ("Exotic", 99999),
-        ("Diaboli : Void", 100400),
-        ("Undead : Devil", 120000),
-        ("Comet", 120000),
-        ("Jade", 125000),
-        ("Bounded", 200000),
-        ("Celestial", 350000),
-        ("Kaywhite", 850000),
-        ("Wind", 1),
-        ("Diaboli", 1),
-        ("Precious", 1),
-        ("Glock", 1),
-        ("Magnetic", 1),
-        ("Glacier", 1),
-        ("Siderum", 1),
-        ("Bleeding", 1),
-        ("Lunar", 1),
-        ("Solar", 1),
-        ("Starlight", 1),
-        ("Flushed", 1),
-        ("Hazard", 1),
-        ("Quartz", 1),
-        ("Undead", 1),
-        ("Corrosive", 1),
-        ("Rage : Heated", 1),
-        ("Leak", 1),
-        ("Powered", 1),
-        ("Aquatic", 1),
+        ("Common", 100000),
+        ("Uncommon", 25000),
+        ("Good", 20000),
+        ("Natural", 12500),
+        ("Rare", 6250),
+        ("Divinus", 3125),
+        ("Crystallized", 1563),
+        ("Rage", 781),
+        ("Topaz", 667),
+        ("Ruby", 286),
+        ("Forbidden", 248),
+        ("Emerald", 200),
+        ("Gilded", 195),
+        ("Ink", 143),
+        ("Jackpot", 129),
+        ("Sapphire", 125),
+        ("Aquamarine", 111),
+        ("Flushed : Lobotomy", 15),
+        ("Hazard : Rays", 14),
+        ("Nautilus", 14),
+        ("Permafrost", 14),
+        ("Stormal", 11),
+        ("Exotic", 10),
+        ("Diaboli : Void", 10),
+        ("Undead : Devil", 8),
+        ("Comet", 8),
+        ("Jade", 8),
+        ("Bounded", 5),
+        ("Celestial", 3),
+        ("Kaywhite", 1),
+        ("Wind", 900),
+        ("Diaboli", 1004),
+        ("Precious", 1024),
+        ("Glock", 1700),
+        ("Magnetic", 2048),
+        ("Glacier", 2304),
+        ("Siderum", 4096),
+        ("Bleeding", 4444),
+        ("Lunar", 50000),
+        ("Solar", 50000),
+        ("Starlight", 50000),
+        ("Flushed", 6900),
+        ("Hazard", 7000),
+        ("Quartz", 8192),
+        ("Undead", 12000),
+        ("Corrosive", 12000),
+        ("Rage : Heated", 12800),
+        ("Leak", 14000),
+        ("Powered", 16384),
+        ("Aquatic", 40000),
     ];
 
     let weights: Vec<_> = auras.iter().map(|&(_, weight)| weight).collect();
@@ -82,18 +95,18 @@ fn get_random_aura() -> String {
     let mut rng = rand::thread_rng();
     let index = dist.sample(&mut rng);
 
-    auras[index].0.to_string()
+    let (aura_name, rarity) = auras[index];
+    format!("{} (1 in {})", aura_name, rarity)
 }
-
 
 mod simple_user_input {
     use std::io;
-    pub fn get_input(prompt: &str) -> String{
-        println!("{}",prompt);
+    pub fn get_input(prompt: &str) -> String {
+        println!("{}", prompt);
         let mut input = String::new();
         match io::stdin().read_line(&mut input) {
-            Ok(_goes_into_input_above) => {},
-            Err(_no_updates_is_fine) => {},
+            Ok(_goes_into_input_above) => {}
+            Err(_no_updates_is_fine) => {}
         }
         input.trim().to_string()
     }

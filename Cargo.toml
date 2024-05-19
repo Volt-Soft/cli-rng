@@ -1,6 +1,6 @@
 [package]
 name = "cli-rng"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 license-file = "LICENSE"
 description = "Sol's RNG but CLI!"
@@ -11,5 +11,4 @@ categories = ["games"]
 
 
 [dependencies]
-chrono = "0.4.38"
 rand = "0.8.5"

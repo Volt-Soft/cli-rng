@@ -7,6 +7,8 @@ description = "Sol's RNG but CLI!"
 repository = "https://github.com/FBDev64/cli-rng.git"
 homepage = "https://github.com/FBDev64/cli-rng"
 readme = "README.md"
+categories = ["games"]
+
 
 [dependencies]
 chrono = "0.4.38"

@@ -1,7 +1,6 @@
 #[allow(unused_imports)]
-use rand::Rng;
-use rand::distributions::WeightedIndex;
 use rand::distributions::Distribution;
+use rand::distributions::WeightedIndex;
 use simple_user_input::get_input;
 use std::collections::HashSet;
 

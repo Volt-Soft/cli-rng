@@ -31,6 +31,8 @@ git clone https://github.com/FBDev64/cli-rng.git
 cd cli-rng
 cargo run -r
 ```
+## Feedback
+[A Survey to collect your feedbacks and bug reports.](https://forms.gle/2RPzt97PhyoSHfKb9)
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first

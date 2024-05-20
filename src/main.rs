@@ -41,15 +41,8 @@ fn main() {
         AuraInfo {
             name: "Uncommon".to_string(),
             range: 6000..=8999,
-            probability: 0.3,
-        },
-        AuraInfo {
-            name: "Rare".to_string(),
-            range: 9000..=9999,
-            probability: use rand::Rng;
-            use std::collections::HashSet;
-            use std::io::{self, Write};
-            
+            probability: 0.4,
+        },   
             struct AuraInfo {
                 name: String,
                 range: std::ops::RangeInclusive<u64>,

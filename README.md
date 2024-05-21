@@ -3,13 +3,11 @@
 I am rewriting whole Sol's RNG roblox game in Rust. Actually, I just implemented a Roll system, with probabilities.
 
 What will be added :
-1. Autoroll
-2. More Auras
-3. Biomes, Weather and Time
-4. Potions
-5. Gauntlets
-6. A system to permanently store Auras based on the computer (Caching, or just a save system)
-7. Lo
+1. More Auras
+2. Biomes, Weather and Time
+3. Potions
+4. Gauntlets
+5. A system to permanently store Auras based on the computer (Caching, or just a save system)
 
 ## Actions
 Currently, there are 4 actions implemented :
@@ -17,6 +15,7 @@ Currently, there are 4 actions implemented :
 - storage - Display all rolled auras
 - exit - Exit the program
 - autoroll - autorolls auras
+- reset - reset storage
 
 ## Downloading
 To download, you need to have [Cargo](https://doc.rust-lang.org/cargo/) on your machine :

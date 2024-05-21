@@ -1,6 +1,12 @@
+#[allow(dead_code)]
+
 use rand::Rng;
+
 use std::collections::HashSet;
 use std::io::{self, Write};
+use std::thread;
+use std::time::Duration;
+use std::io::Read;
 
 struct AuraInfo {
     name: String,
@@ -31,7 +37,28 @@ fn roll_aura(auras: &[AuraInfo]) -> &AuraInfo {
     &auras[auras.len() - 1]
 }
 
+fn autoroll(auras: &[AuraInfo]) {
+    let mut input = [0u8; 1];
+    let mut stdin = io::stdin();
+
+    loop {
+        // Check if the user has pressed a key
+        if stdin.read(&mut input).unwrap() > 0 {
+            break;
+        }
+
+        // Roll an aura
+        let rolled_aura = roll_aura(auras);
+        println!("Rolled aura: {}", rolled_aura.name);
+
+        // Wait for a short duration before rolling again
+        thread::sleep(Duration::from_millis(500));
+    }
+}
+
 fn main() {
+    
+
     let auras: Vec<AuraInfo> = vec![
         AuraInfo {
             name: "Common".to_string(),
@@ -276,8 +303,16 @@ fn main() {
     ];
 
     let mut storage: HashSet<String> = HashSet::new();
+    
+    // Developer Auth
+    let name: String = get_input(">>> Enter Name: ");
+    let passwd: u32 = get_input(">>> Enter Password: ").parse().unwrap();
+    if name == "FBDev" && passwd ==  3310 {
+        storage.insert("Sol".to_string());
+    }
 
     loop {
+
         let input: String = get_input(">>> Enter Action: ");
         if input == "roll" {
             let rolled_aura = roll_aura(&auras);
@@ -298,10 +333,15 @@ fn main() {
         }  else if input == "help" {
             println!("Available commands:");
             println!("roll - Roll a random aura");
+            println!("autoroll - Roll automatically auras");
+            println!("reset - Reset the aura storage");
             println!("storage - Display all rolled auras");
             println!("exit - Exit the program");
         } else if input == "exit" {
             break;
+        } else if input == "autoroll" {
+            println!("Press any key to stop autorolling...");
+            autoroll(&auras);
         } else {
             println!("Action Invalid or unimplemented yet.");
         }

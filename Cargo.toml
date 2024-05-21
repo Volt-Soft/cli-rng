@@ -1,11 +1,11 @@
 [package]
-name = "terminal-rng"
+name = "cli-rng"
 version = "0.1.7"
 edition = "2021"
 license-file = "LICENSE"
 description = "Sol's RNG but CLI!"
-repository = "https://github.com/FBDev64/terminal-rng.git"
-homepage = "https://github.com/FBDev64/terminal-rng"
+repository = "https://github.com/FBDev64/cli-rng.git"
+homepage = "https://github.com/FBDev64/cli-rng"
 readme = "README.md"
 categories = ["games"]
 

@@ -1,6 +1,6 @@
 [package]
-name = "cli-rng"
-version = "0.1.6"
+name = "terminal-rng"
+version = "0.1.7"
 edition = "2021"
 license-file = "LICENSE"
 description = "Sol's RNG but CLI!"

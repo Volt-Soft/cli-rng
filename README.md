@@ -1,4 +1,4 @@
-# cli-rng
+# Terminal RNG
 ## Sol's RNG, but Command Line !
 I am rewriting whole Sol's RNG roblox game in Rust. Actually, I just implemented a Roll system, with probabilities.
 

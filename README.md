@@ -7,7 +7,7 @@ What will be added :
 2. Potions
 3. Gauntlets
 4. Biomes, Weather and Time
-5. A system to permanently store Auras based on the computer (Caching, or just a save system)
+5. A system to permanently store Auras based on the computer, maybe a TXT or JSON that has the auras, potions, gauntlets and effects saved.
 
 ## Actions
 Currently, there are 4 actions implemented :

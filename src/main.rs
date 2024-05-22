@@ -289,7 +289,7 @@ fn main() {
     let name: String = get_input(">>> Enter Name: ");
     let passwd: u32 = get_input(">>> Enter Password: ").parse().unwrap();
     if name == "FBDev" && passwd ==  3310 {
-        storage.insert("Sol".to_string());
+        storage.insert("Cli".to_string());
     }
 
     loop {

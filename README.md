@@ -4,9 +4,9 @@ I am rewriting whole Sol's RNG roblox game in Rust. Actually, I just implemented
 
 What will be added :
 1. More Auras
-2. Biomes, Weather and Time
-3. Potions
-4. Gauntlets
+2. Potions
+3. Gauntlets
+4. Biomes, Weather and Time
 5. A system to permanently store Auras based on the computer (Caching, or just a save system)
 
 ## Actions

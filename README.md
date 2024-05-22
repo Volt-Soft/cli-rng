@@ -7,8 +7,8 @@ What will be added :
 2. Potions
 3. Gauntlets
 4. Biomes, Weather and Time
-5. A system to permanently store Auras based on a TXT or JSON that stores luck,Inventory, Storage.
-6. A private server system, based on SSH.
+5. A code based on a TXT or JSON that stores luck,Inventory, Storage.
+6. Private servers based on internet with ban and kick commands.
 ## Actions
 Currently, there are 4 actions implemented :
 - roll - Roll a random aura

@@ -7,7 +7,7 @@ What will be added :
 2. Potions
 3. Gauntlets
 4. Biomes, Weather and Time
-5. A code based on a TXT or JSON that stores luck,Inventory, Storage.
+5. A code based on a TXT or JSON that stores every information. On every game startup,it will give the items.
 6. Private servers based on internet with ban and kick commands.
 ## Actions
 Currently, there are 4 actions implemented :

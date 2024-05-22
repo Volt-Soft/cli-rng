@@ -37,25 +37,6 @@ fn roll_aura(auras: &[AuraInfo]) -> &AuraInfo {
     &auras[auras.len() - 1]
 }
 
-fn autoroll(auras: &[AuraInfo]) {
-    let mut input = [0u8; 1];
-    let mut stdin = io::stdin();
-
-    loop {
-        // Check if the user has pressed a key
-        if stdin.read(&mut input).unwrap() > 0 {
-            break;
-        }
-
-        // Roll an aura
-        let rolled_aura = roll_aura(auras);
-        println!("Rolled aura: {}", rolled_aura.name);
-
-        // Wait for a short duration before rolling again
-        thread::sleep(Duration::from_millis(500));
-    }
-}
-
 fn main() {
     
 

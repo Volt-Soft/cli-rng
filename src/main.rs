@@ -314,15 +314,11 @@ fn main() {
         }  else if input == "help" {
             println!("Available commands:");
             println!("roll - Roll a random aura");
-            println!("autoroll - Roll automatically auras");
             println!("reset - Reset the aura storage");
             println!("storage - Display all rolled auras");
             println!("exit - Exit the program");
         } else if input == "exit" {
             break;
-        } else if input == "autoroll" {
-            println!("Press any key to stop autorolling...");
-            autoroll(&auras);
         } else {
             println!("Action Invalid or unimplemented yet.");
         }

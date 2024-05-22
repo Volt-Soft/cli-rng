@@ -14,7 +14,6 @@ Currently, there are 4 actions implemented :
 - roll - Roll a random aura
 - storage - Display all rolled auras
 - exit - Exit the program
-- autoroll - autorolls auras
 - reset - reset storage
 
 ## Downloading

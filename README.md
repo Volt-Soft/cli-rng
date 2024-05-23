@@ -13,8 +13,7 @@ What will be added :
 Currently, there are 4 actions implemented :
 - roll - Roll a random aura
 - storage - Display all rolled auras
-- exit - Exit the program
-- reset - reset storage
+- q - Exit the program
 
 ## Downloading
 To download, you need to have [Cargo](https://doc.rust-lang.org/cargo/) on your machine :

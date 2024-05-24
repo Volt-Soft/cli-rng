@@ -1,9 +1,11 @@
+#[allow(unused_mut)]
+
 use once_cell::sync::Lazy;
 use rand::Rng;
 
 pub struct Aura {
     pub name: String,
-    pub probability: f32,
+    pub probability: f64,
 }
 
 pub static AURAS: Lazy<Vec<Aura>> = Lazy::new(|| {
@@ -311,17 +313,16 @@ pub static AURAS: Lazy<Vec<Aura>> = Lazy::new(|| {
     ]
 });
 
-pub fn roll_aura() -> &'static Aura {
-    let mut rng = rand::thread_rng();
-    let random_value: f32 = rng.gen_range(0.0..1.0);
+pub fn roll_aura(current_luck: f64) -> &'static Aura {
+    let mut random_value: f64 = rand::thread_rng().gen_range(0.0..1.0) / current_luck;
+    let mut cumulative_probability: f64 = 0.0;
 
-    let mut cumulative_probability = 0.0;
-    for aura in AURAS.iter() {
-        cumulative_probability += aura.probability;
-        if random_value < cumulative_probability {
-            return aura;
+    for aura_info in AURAS.iter() {
+        cumulative_probability += aura_info.probability;
+        if random_value <= cumulative_probability {
+            return aura_info;
         }
     }
 
-    &AURAS[AURAS.len() - 1]
+    unreachable!()
 }

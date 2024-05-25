@@ -1,18 +1,15 @@
 use std::collections::HashSet;
+use std::io::{self, Write};
 use std::time::Instant;
-use std::io::Write;
-use std::io;
 
-mod potions;
-mod aura;
 mod map;
+mod aura;
+mod potions;
 
 fn main() {
-    
     let mut storage: HashSet<String> = HashSet::new();
     let mut current_luck: f64 = 1.0;
     let mut potion_expiry: Option<Instant> = None;
-    let mut game_map = map::Map::new();
 
     // Developer Auth
     let name = get_input("Enter your name: ");
@@ -22,21 +19,52 @@ fn main() {
     if name == "FBDev" && password == "3310" {
         // Add the Sol aura to the storage
         println!("Sol aura added to storage.");
+        storage.insert("Sol".to_string());
     } else {
         println!("Not a developer, huh.");
     }
-    
-    let input : String = get_input("> Enter Action : ");
+
+    let mut game_map = map::Map::new(); // Create a new instance of the Map struct
+
+    game_map.render_map();
 
     loop {
-    
-        if input == "q" {
+        print!(">>> Enter Action by pressing : then the action\n>>> Type help for a full actions list.\n");
+        io::stdout().flush().unwrap();
+
+        let action = get_input(": ");
+
+        if action == "q" {
             break;
-        } else if input == "roll" {
+        } else if action == "help" {
+            println!("Available actions:");
+            println!(":w - Move up");
+            println!(":a - Move left");
+            println!(":s - Move down");
+            println!(":d - Move right");
+            println!(":q - Quit");
+            println!(":roll - Roll an aura");
+            println!(":storage - Display rolled auras");
+            println!(":potion - Use a potion");
+        } else if action == "w" {
+            game_map.clear_screen();
+            game_map.move_player(0, -1);
+        } else if action == "a" {
+            game_map.clear_screen();
+            game_map.move_player(-1, 0);
+        } else if action == "s" {
+            game_map.clear_screen();
+            game_map.move_player(0, 1);
+        } else if action == "d" {
+            game_map.clear_screen();
+            game_map.move_player(1, 0);
+        } else if action == "roll" {
+            game_map.clear_screen();
             let rolled_aura = aura::roll_aura(current_luck);
             println!("You rolled: {}", rolled_aura.name);
             storage.insert(rolled_aura.name.clone());
-        } else if input == "storage" {
+        } else if action == "storage" {
+            game_map.clear_screen();
             if storage.is_empty() {
                 println!("No auras rolled yet.");
             } else {
@@ -50,54 +78,26 @@ fn main() {
                     println!("[{}, 1 in {}]", aura_info.name, probability);
                 }
             }
-        } else if input == "potion" {
+        } else if action == "potion" {
+            game_map.clear_screen();
             println!("Available potions:");
             println!("1. {}", potions::LUCKY_POTION.name);
             println!("2. {}", potions::FORTUNE_I_POTION.name);
             // Print the remaining potion types here
-    
-            let mut potion_choice = String::new();
-            println!("Enter the number of the potion you want to use:");
-            io::stdin().read_line(&mut potion_choice).unwrap();
-    
+
+            let potion_choice = get_input("Enter the number of the potion you want to use: ");
+
             match potion_choice.trim().parse::<u32>() {
                 Ok(1) => potions::apply_potion_effect(&potions::LUCKY_POTION, &mut current_luck, &mut potion_expiry),
                 Ok(2) => potions::apply_potion_effect(&potions::FORTUNE_I_POTION, &mut current_luck, &mut potion_expiry),
                 // Add cases for the remaining potion types here
                 _ => println!("Invalid potion choice."),
             }
-        } else if input == "move" {
-            let mut direction = String::new();
-            println!("Enter the direction to move (w/a/s/d):");
-            io::stdin().read_line(&mut direction).unwrap();
-    
-            match direction.trim() {
-                "w" => {
-                    game_map.move_player(0, -1);
-                    game_map.render_map();
-                }
-                "a" => {
-                    game_map.move_player(-1, 0);
-                    game_map.render_map();
-                }
-                "s" => {
-                    game_map.move_player(0, 1);
-                    game_map.render_map();
-                }
-                "d" => {
-                    game_map.move_player(1, 0);
-                    game_map.render_map();
-                }
-                _ => println!("Invalid direction!"),
-            }
-    
-            if game_map.potions.is_empty() {
-                println!("You collected all the potions!");
-            }
         } else {
-            println!("Invalid input, please try again.");
+            game_map.clear_screen();
+            println!("Invalid action!");
         }
-    
+
         // Check if the potion effect has expired
         if let Some(expiry_time) = potion_expiry {
             if Instant::now() >= expiry_time {
@@ -106,9 +106,7 @@ fn main() {
                 println!("Potion effect has expired. Luck reset to normal.");
             }
         }
-
     }
-    
 }
 
 fn get_input(prompt: &str) -> String {

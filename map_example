@@ -1,0 +1,19 @@
+Dimensions :
+
+The map is infinite, like Rogue Game, but will respect this :
+
+Jake's Worshop at x: -4, y: 0, represented by J on the map;
+Spawn Point at x: 0, y: 0, represented by O on the map
+Stella at x: -12, y: 12, represented by S;
+Player represented by the first letter of the entered Name;
+
+Controls
+
+The player will use arrows to move in the map. When the player presses escape then, he needs to write :actiondesired to do the action, like in Vim.
+
+Display
+
+The game will print only one time the map, and can render the map 16*16. When the player oves in the map, it updates the displayed map without reprinting it, like in the Game Rogue released in 1984.
+Under the map, the player will see the following informations :
+>>> Enter Action by pressing : then the action
+>>> Type help for a full actions list.

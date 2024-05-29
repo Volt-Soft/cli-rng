@@ -3,12 +3,16 @@
 I am rewriting whole Sol's RNG roblox game in Rust. Actually, I just implemented a Roll system, with probabilities.
 
 What will be added :
-1. More Auras
-2. Potions
-3. Gauntlets
-4. Biomes, Weather and Time
-5. Based on a TXT or JSON that stores every information. On every game startup, it will give the items.
-6. Private servers based on internet with ban and kick commands.
+- [x] More Auras
+- [x] Potions
+- [ ] Biomes
+- [ ] Saves/Accponts
+- [ ] Gauntlets
+- [ ] Better Map
+- [ ] Biomes
+- [ ] Time
+- [ ] Weather
+      
 ## Actions
 Currently, there are 4 actions implemented :
 - roll - Roll a random aura

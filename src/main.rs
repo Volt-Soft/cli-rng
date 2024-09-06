@@ -1,12 +1,19 @@
+#![allow(unused_mut)]
+
 use std::collections::HashSet;
 use std::io::{self, Write};
 use std::time::Instant;
+use std::process::Command;
 
-mod map;
 mod aura;
 mod potions;
 
 fn main() {
+    
+    let mut _syscom = Command::new("clear")
+        .output()
+        .expect("Failed to clear the screen, are you Unix-based ?");
+
     let mut storage: HashSet<String> = HashSet::new();
     let mut current_luck: f64 = 1.0;
     let mut potion_expiry: Option<Instant> = None;
@@ -24,10 +31,6 @@ fn main() {
         println!("Not a developer, huh.");
     }
 
-    let mut game_map = map::Map::new(); // Create a new instance of the Map struct
-
-    game_map.render_map();
-
     loop {
         print!(">>> Enter Action by pressing : then the action\n>>> Type help for a full actions list.\n");
         io::stdout().flush().unwrap();
@@ -38,33 +41,14 @@ fn main() {
             break;
         } else if action == "help" {
             println!("Available actions:");
-            println!(":w - Move up");
-            println!(":a - Move left");
-            println!(":s - Move down");
-            println!(":d - Move right");
-            println!(":q - Quit");
             println!(":roll - Roll an aura");
             println!(":storage - Display rolled auras");
             println!(":potion - Use a potion");
-        } else if action == "w" {
-            game_map.clear_screen();
-            game_map.move_player(0, -1);
-        } else if action == "a" {
-            game_map.clear_screen();
-            game_map.move_player(-1, 0);
-        } else if action == "s" {
-            game_map.clear_screen();
-            game_map.move_player(0, 1);
-        } else if action == "d" {
-            game_map.clear_screen();
-            game_map.move_player(1, 0);
         } else if action == "roll" {
-            game_map.clear_screen();
             let rolled_aura = aura::roll_aura(current_luck);
             println!("You rolled: {}", rolled_aura.name);
             storage.insert(rolled_aura.name.clone());
         } else if action == "storage" {
-            game_map.clear_screen();
             if storage.is_empty() {
                 println!("No auras rolled yet.");
             } else {
@@ -79,7 +63,6 @@ fn main() {
                 }
             }
         } else if action == "potion" {
-            game_map.clear_screen();
             println!("Available potions:");
             println!("1. {}", potions::LUCKY_POTION.name);
             println!("2. {}", potions::FORTUNE_I_POTION.name);
@@ -94,7 +77,6 @@ fn main() {
                 _ => println!("Invalid potion choice."),
             }
         } else {
-            game_map.clear_screen();
             println!("Invalid action!");
         }
 
